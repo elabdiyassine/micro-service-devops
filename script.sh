@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # List of services
-services=(  "customer-service" "account-service" ) # "discovery-service" "config-repo" "account-service"  "config-service" "gateway-service" "discovery-service" "account-service"  "config-service" "gateway-service" "account-service"
-
+services=(  "customer-service" "account-service" "discovery-service"   "config-service" "gateway-service" )
+ 
 # Loop through each service
 for service in "${services[@]}"
 do
