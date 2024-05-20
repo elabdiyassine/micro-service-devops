@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  name: emsi-ebank-discovery-service
+  labels:
+    io.kompose.service: emsi-ebank-discovery-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: emsi-ebank-discovery-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: emsi-ebank-discovery-service
+    spec:
+      containers:
+        - image: yassineelabdi05/discovery-service:latest
+          name: emsi-ebank-discovery-service
+          ports:
+            - containerPort: 8761
+          resources: {}
+      restartPolicy: Always

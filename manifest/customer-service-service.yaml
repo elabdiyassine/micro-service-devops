@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: emsi-customer-service
+  name: emsi-customer-service
+spec:
+  ports:
+  - name: "8081"
+    port: 8081
+    targetPort: 8081
+  selector:
+    io.kompose.service: emsi-customer-service
+status:
+  loadBalancer: {}

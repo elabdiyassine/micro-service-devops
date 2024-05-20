@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: emsi-ebank-discovery-service
+  name: emsi-ebank-discovery-service
+spec:
+  ports:
+  - name: "8761"
+    port: 8761
+    targetPort: 8761
+  selector:
+    io.kompose.service: emsi-ebank-discovery-service
+status:
+  loadBalancer: {}

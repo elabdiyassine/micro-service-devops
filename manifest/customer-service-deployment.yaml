@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  name: emsi-customer-service
+  labels:
+    io.kompose.service: emsi-customer-service
+spec:
+  replicas: 1
+  selector:   # Adding the selector field
+    matchLabels:
+      io.kompose.service: emsi-customer-service
+  template:
+    metadata:
+      labels:
+        io.kompose.service: emsi-customer-service
+    spec:
+      containers:
+      - env:
+        - name: CONFIG_SERVICE_URL
+          value: http://emsi-ebank-config-service:9999
+        - name: DISCOVERY_SERVICE_URL
+          value: http://emsi-ebank-discovery-service:8761/eureka
+        image: yassineelabdi05/customer-service:latest
+        name: emsi-customer-service
+        ports:
+        - containerPort: 8081
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\WINDOWS\system32\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: emsi-ebank-config-service    # This label should match the selector label
+  name: emsi-ebank-config-service
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      io.kompose.service: emsi-ebank-config-service  # Selector label
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: emsi-ebank-config-service  # Template label
+    spec:
+      containers:
+      - env:
+        - name: DISCOVERY_SERVICE_URL
+          value: http://emsi-ebank-discovery-service:8761/eureka
+        image: yassineelabdi05/config-service:latest
+        name: emsi-ebank-config-service
+        ports:
+        - containerPort: 9999
+        resources: {}
+      restartPolicy: Always
+status: {}
